@@ -1,0 +1,29 @@
+spring:
+  ssl:
+    bundle:
+      jks:
+        keycloak-jwks:
+          truststore:
+            location: "file:/ABSOLUTE/PATH/keycloak-multi-env/truststore.jks"
+            password: "changeit"
+
+config:
+  secapi:
+    auth:
+      allowed-issuers: https://auth-dev.local/realms/platform,https://auth-qa.local/realms/platform,https://auth-prod.local/realms/platform
+
+app:
+  security:
+    jwks-cache-ttl: 15m
+    connect-timeout: 10s
+    read-timeout: 30s
+    clock-skew: 30s
+
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
